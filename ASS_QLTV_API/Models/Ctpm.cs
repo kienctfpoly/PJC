@@ -1,7 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 
 #nullable disable
+
+using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace ASS_QLTV_API.Models
 {
@@ -17,8 +20,11 @@ namespace ASS_QLTV_API.Models
         public string GhiChu { get; set; }
         public double? TienPhat { get; set; }
 
+        [JsonIgnore]
         public virtual Phieumuon MaPmNavigation { get; set; }
+        [JsonIgnore]
         public virtual Sach MaSachNavigation { get; set; }
+        [JsonIgnore]
         public virtual Taikhoan UserNavigation { get; set; }
     }
 }

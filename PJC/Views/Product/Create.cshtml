@@ -1,4 +1,4 @@
-﻿@model PJC.Models.Sach
+﻿@model ASS_QLTV_API.Models.Sach
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -18,12 +18,12 @@
 
         <div class="card-body">
             <div class="col-md-4">
-                <form asp-action="Create">
+                <form asp-action="Create" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <label asp-for="ImageUrl" class="control-label"></label>
-                        <input asp-for="ImageUrl" class="form-control" type="file" />
-                        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                        <label asp-for="ImageFile" class="control-label"></label>
+                        <input asp-for="ImageFile" type="file" accept="image/*"/>
+                        <span asp-validation-for="ImageFile" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="MaSach" class="control-label"></label>
@@ -36,14 +36,14 @@
                         <span asp-validation-for="TenSach" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="TenTG" class="control-label"></label>
-                        <input asp-for="TenTG" class="form-control" />
-                        <span asp-validation-for="TenTG" class="text-danger"></span>
+                        <label asp-for="TenTg" class="control-label"></label>
+                        <input asp-for="TenTg" class="form-control" />
+                        <span asp-validation-for="TenTg" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="NhaXB" class="control-label"></label>
-                        <input asp-for="NhaXB" class="form-control" />
-                        <span asp-validation-for="NhaXB" class="text-danger"></span>
+                        <label asp-for="NhaXb" class="control-label"></label>
+                        <input asp-for="NhaXb" class="form-control" />
+                        <span asp-validation-for="NhaXb" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="TheLoai" class="control-label"></label>

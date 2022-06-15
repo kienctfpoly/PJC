@@ -1,7 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 
 #nullable disable
+
+using System;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace ASS_QLTV_API.Models
 {
@@ -19,6 +22,7 @@ namespace ASS_QLTV_API.Models
         public string GioiTinh { get; set; }
         public int MatSach { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Phieumuon> Phieumuons { get; set; }
     }
 }

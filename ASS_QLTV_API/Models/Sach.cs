@@ -1,7 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 
 #nullable disable
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Http;
 
 namespace ASS_QLTV_API.Models
 {
@@ -20,8 +25,12 @@ namespace ASS_QLTV_API.Models
         public int SoLuong { get; set; }
         public double GiaTien { get; set; }
         public string ImageUrl { get; set; }
+        [JsonIgnore]
+        [NotMapped]
+        public IFormFile ImageFile { get; set; }
         public string MieuTa { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Ctpm> Ctpms { get; set; }
     }
 }

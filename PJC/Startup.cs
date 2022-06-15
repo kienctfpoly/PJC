@@ -25,6 +25,7 @@ namespace PJC
             services.AddMvc(option => option.EnableEndpointRouting = false);
             IMvcBuilder builder = services.AddRazorPages();
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            services.AddControllers().AddNewtonsoftJson();
 
 #if DEBUG
             if (environment == Environments.Development)
