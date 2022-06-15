@@ -40,7 +40,7 @@ namespace ASS_QLTV_API.Services
             }
             catch (Exception e)
             {
-                return 0;
+                return -1;
             }
         }
 
@@ -57,7 +57,7 @@ namespace ASS_QLTV_API.Services
             }
             catch (Exception e)
             {
-                return 0;
+                return -1;
             }
         }
 
@@ -74,7 +74,7 @@ namespace ASS_QLTV_API.Services
             }
             catch (Exception e)
             {
-                return 0;
+                return -1;
             }
         }
 
@@ -91,7 +91,7 @@ namespace ASS_QLTV_API.Services
             }
             catch (Exception e)
             {
-                return 0;
+                return -1;
             }
         }
 
@@ -108,10 +108,31 @@ namespace ASS_QLTV_API.Services
             }
             catch (Exception e)
             {
-                return 0;
+                return -1;
             }
         }
 
-
+        public int Login(string username, string password)
+        {
+            try
+            {
+                var data= GetDataFromAPI("https://localhost:44301/", "api/Taikhoans");
+                List<Taikhoan> accList = JsonConvert.DeserializeObject<List<Taikhoan>>(data);
+                var acc = accList.FirstOrDefault(acc => acc.User == username && acc.Password == password);
+                if (acc is {PhanQuyen: 1})
+                {
+                    return 1;
+                }
+                else if(acc is { PhanQuyen: 2})
+                {
+                    return 0;
+                }
+                return -1;
+            }
+            catch (Exception )
+            {
+                return -1;
+            }
+        }
     }
 }

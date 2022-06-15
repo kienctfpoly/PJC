@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using ASS_QLTV_API.Models;
+using ASS_QLTV_API.Services;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using PJC.Models;
 
 namespace PJC.Areas.User.Controllers
@@ -7,14 +11,25 @@ namespace PJC.Areas.User.Controllers
 
     public class DocGiaController : Controller
     {
+        private APIServices _services;
+
+        public DocGiaController()
+        {
+            _services = new APIServices();
+        }
+
         public IActionResult Index()
         {
             if (TempData["result"] != null)
             {
                 ViewBag.SuccessMsg = TempData["result"];
             }
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
-            return View(context.GetDocGia());
+            //StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
+            //return View(context.GetDocGia());
+            var data = _services.GetDataFromAPI("https://localhost:44301/", "api/Docgiums");
+            List<ASS_QLTV_API.Models.Docgium> dgList =
+                JsonConvert.DeserializeObject<List<ASS_QLTV_API.Models.Docgium>>(data);
+            return View(dgList);
         }
         [HttpGet]
        // [Area("User")]
@@ -24,11 +39,12 @@ namespace PJC.Areas.User.Controllers
         }
         [HttpPost]
        // [Area("User")]
-        public IActionResult Create(DocGia dg)
+        public IActionResult Create(Docgium dg)
         {
             int count;
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
-            count = context.CreateDocGia(dg);
+            //StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
+            //count = context.CreateDocGia(dg);
+            count = _services.PostDocGia("https://localhost:44301/api/Docgiums", dg);
             if (count > 0)
             {
                 TempData["result"] = "Thêm mới độc giả thành công";

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ASS_QLTV_API.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -16,7 +17,13 @@ namespace PJC.Controllers
 
     public class LoginController : Controller
     {
-        
+        private APIServices _services;
+
+        public LoginController()
+        {
+            _services = new APIServices();
+        }
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -30,11 +37,12 @@ namespace PJC.Controllers
         public IActionResult Index(string user,string password)
         {
            
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
-            int kq = context.Login(user, password);
+            //StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
+            //int kq = context.Login(user, password);
+            int kq = _services.Login(user, password);
             TempData["userlogin"] = user;
-            HttpContext.Session.SetString("user", user);          
-            
+            HttpContext.Session.SetString("user", user);
+
             if (kq == 1)
             {
                 return RedirectToAction("Index","Home");

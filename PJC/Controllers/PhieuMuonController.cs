@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ASS_QLTV_API.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MySqlX.XDevAPI;
+using Newtonsoft.Json;
 using PJC.Models;
 
 namespace PJC.Controllers
@@ -13,6 +15,12 @@ namespace PJC.Controllers
     //[Authorize]
     public class PhieuMuonController : Controller
     {
+        private APIServices _services;
+
+        public PhieuMuonController()
+        {
+            _services = new APIServices();
+        }
 
         public IActionResult Index()
         {
@@ -20,8 +28,12 @@ namespace PJC.Controllers
             {
                 ViewBag.SuccessMsg = TempData["result"];
             }
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
-            return View(context.GetPhieuMuon());
+            //StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
+            //return View(context.GetPhieuMuon());
+            var data = _services.GetDataFromAPI("https://localhost:44301/", "api/Phieumuons");
+            List<ASS_QLTV_API.Models.Phieumuon> pmList =
+                JsonConvert.DeserializeObject<List<ASS_QLTV_API.Models.Phieumuon>>(data);
+            return View(pmList);
         }
         [HttpGet]
         public IActionResult Create()

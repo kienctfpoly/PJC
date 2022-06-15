@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PJC.Models.DocGia>
+﻿@model IEnumerable<ASS_QLTV_API.Models.Docgium>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
@@ -41,13 +41,13 @@ setTimeout(function () {
                             <thead>
                                 <tr>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.MaDG)
+                                        @Html.DisplayNameFor(model => model.MaDg)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.TenDG)
+                                        @Html.DisplayNameFor(model => model.TenDg)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.SDT)
+                                        @Html.DisplayNameFor(model => model.Sdt)
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.DiaChi)
@@ -68,13 +68,13 @@ setTimeout(function () {
                                 {
                                     <tr>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.MaDG)
+                                            @Html.DisplayFor(modelItem => item.MaDg)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.TenDG)
+                                            @Html.DisplayFor(modelItem => item.TenDg)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.SDT)
+                                            @Html.DisplayFor(modelItem => item.Sdt)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.DiaChi)
@@ -87,7 +87,7 @@ setTimeout(function () {
                                         </td>
                                         <td>
                                             <form action="~/User/DocGia/Edit" method="get">
-                                                <input type="hidden" value="@item.MaDG" name="id" />
+                                                <input type="hidden" value="@item.MaDg" name="id" />
 
                                                 <input type="submit" value="Sửa" class="btn btn-outline-success" />
                                             </form>
@@ -95,14 +95,14 @@ setTimeout(function () {
                                         </td>
                                         <td>
                                             <form action="~/User/DocGia/Detail" method="get">
-                                                <input type="hidden" value="@item.MaDG" name="id" />
+                                                <input type="hidden" value="@item.MaDg" name="id" />
 
                                                 <input type="submit" value="Chi tiết" class="btn btn-outline-warning" />
                                             </form>
                                         </td>
                                         <td>
                                             <form action="~/User/DocGia/Delete" method="get">
-                                                <input type="hidden" value="@item.MaDG" name="id" />
+                                                <input type="hidden" value="@item.MaDg" name="id" />
 
                                                 <input type="submit" value="Xóa" class="btn btn-outline-danger" />
                                             </form>

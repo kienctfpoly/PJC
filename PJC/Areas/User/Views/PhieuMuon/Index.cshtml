@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PJC.Models.PhieuMuon>
+﻿@model IEnumerable<ASS_QLTV_API.Models.Phieumuon>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
@@ -42,10 +42,10 @@ setTimeout(function () {
                             <thead>
                                 <tr>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.MaPM)
+                                        @Html.DisplayNameFor(model => model.MaPm)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.MaDG)
+                                        @Html.DisplayNameFor(model => model.MaDg)
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.NgayMuon)
@@ -69,10 +69,10 @@ setTimeout(function () {
                                 {
                                     <tr>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.MaPM)
+                                            @Html.DisplayFor(modelItem => item.MaPm)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.MaDG)
+                                            @Html.DisplayFor(modelItem => item.MaDg)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.NgayMuon)
@@ -88,20 +88,20 @@ setTimeout(function () {
                                         </td>
                                         <td>
                                             <form action="~/User/PhieuMuon/Edit" method="get">
-                                                <input type="hidden" value="@item.MaPM" name="id" />
+                                                <input type="hidden" value="@item.MaPm" name="id" />
                                                 <input type="submit" value="Sửa" class="btn btn-outline-success" />
                                             </form>
 
                                         </td>
                                         <td>
                                             <form action="~/User/PhieuMuon/Detail" method="get">
-                                                <input type="hidden" value="@item.MaPM" name="id" />
+                                                <input type="hidden" value="@item.MaPm" name="id" />
                                                 <input type="submit" value="Chi tiết" class="btn btn-outline-warning" />
                                             </form>
                                         </td>
                                         <td>
                                             <form action="~/User/PhieuMuon/Delete" method="get">
-                                                <input type="hidden" value="@item.MaPM" name="id" />
+                                                <input type="hidden" value="@item.MaPm" name="id" />
                                                 <input type="submit" value="Xóa" class="btn btn-outline-danger" />
                                             </form>
                                         </td>

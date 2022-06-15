@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using ASS_QLTV_API.Services;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using PJC.Models;
 
 namespace PJC.Areas.User
@@ -7,6 +10,13 @@ namespace PJC.Areas.User
     public class ProductController : Controller
     {
         private StoreContext context;
+        private APIServices _services;
+
+        public ProductController()
+        {
+            _services = new APIServices();
+        }
+
         void setDBContext()
         {
             if (context == null)
@@ -18,8 +28,12 @@ namespace PJC.Areas.User
             {
                 ViewBag.SuccessMsg = TempData["result"];
             }
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
-            return View(context.GetSanPham());
+            //StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
+            //return View(context.GetSanPham());
+            var data = _services.GetDataFromAPI("https://localhost:44301/", "api/Saches");
+            List<ASS_QLTV_API.Models.Sach> sachList =
+                JsonConvert.DeserializeObject<List<ASS_QLTV_API.Models.Sach>>(data);
+            return View(sachList);
         }
         [HttpGet]
         public IActionResult Create()
