@@ -1,4 +1,4 @@
-﻿@model PJC.Models.Sach
+﻿@model ASS_QLTV_API.Models.Sach
 
 @{
     ViewData["Title"] = "Edit";
@@ -20,7 +20,7 @@
             <div class="col-md-4">
                 <form action="~/User/Product/Edit" method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
+                    <div class="form-group" hidden>
                         <label asp-for="MaSach" class="control-label"></label>
                         <input asp-for="MaSach" class="form-control" />
                         <span asp-validation-for="MaSach" class="text-danger"></span>
@@ -31,14 +31,14 @@
                         <span asp-validation-for="TenSach" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="TenTG" class="control-label"></label>
-                        <input asp-for="TenTG" class="form-control" />
-                        <span asp-validation-for="TenTG" class="text-danger"></span>
+                        <label asp-for="TenTg" class="control-label"></label>
+                        <input asp-for="TenTg" class="form-control" />
+                        <span asp-validation-for="TenTg" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="NhaXB" class="control-label"></label>
-                        <input asp-for="NhaXB" class="form-control" />
-                        <span asp-validation-for="NhaXB" class="text-danger"></span>
+                        <label asp-for="NhaXb" class="control-label"></label>
+                        <input asp-for="NhaXb" class="form-control" />
+                        <span asp-validation-for="NhaXb" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="TheLoai" class="control-label"></label>

@@ -1,4 +1,4 @@
-﻿@model PJC.Models.TaiKhoan
+﻿@model ASS_QLTV_API.Models.Taikhoan
 
 @{
     ViewData["Title"] = "Update";
@@ -19,15 +19,15 @@
             <div class="col-md-4">
                 <form asp-action="Edit">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
+                    <div class="form-group" disable>
                         <label asp-for="User" class="control-label"></label>
                         <input asp-for="User" class="form-control" readonly />
                         <span asp-validation-for="User" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="PassWord" class="control-label"></label>
-                        <input asp-for="PassWord" class="form-control" />
-                        <span asp-validation-for="PassWord" class="text-danger"></span>
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="PhanQuyen" class="control-label"></label>
@@ -35,19 +35,19 @@
                         <span asp-validation-for="PhanQuyen" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="TenND" class="control-label"></label>
-                        <input asp-for="TenND" class="form-control" />
-                        <span asp-validation-for="TenND" class="text-danger"></span>
+                        <label asp-for="TenNd" class="control-label"></label>
+                        <input asp-for="TenNd" class="form-control" />
+                        <span asp-validation-for="TenNd" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="SDT" class="control-label"></label>
-                        <input asp-for="SDT" class="form-control" />
-                        <span asp-validation-for="SDT" class="text-danger"></span>
+                        <label asp-for="Sdt" class="control-label"></label>
+                        <input asp-for="Sdt" class="form-control" />
+                        <span asp-validation-for="Sdt" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="CMND" class="control-label"></label>
-                        <input asp-for="CMND" class="form-control" />
-                        <span asp-validation-for="CMND" class="text-danger"></span>
+                        <label asp-for="Cmnd" class="control-label"></label>
+                        <input asp-for="Cmnd" class="form-control" />
+                        <span asp-validation-for="Cmnd" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Save" class="btn btn-primary" />

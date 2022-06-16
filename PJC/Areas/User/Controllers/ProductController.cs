@@ -76,9 +76,11 @@ namespace PJC.Areas.User
         [HttpGet]
         public IActionResult Edit(string id)
         {
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
-            Sach s = context.GetSachByMa(id);
-            ViewData.Model = s;
+            //StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
+            //Sach s = context.GetSachByMa(id);
+            var data = _services.GetDataFromAPIById("https://localhost:44301/", "api/Saches", id);
+            ASS_QLTV_API.Models.Sach sach = JsonConvert.DeserializeObject<ASS_QLTV_API.Models.Sach>(data);
+            ViewData.Model = sach;
             return View();
         }
         [HttpPost]
@@ -101,17 +103,32 @@ namespace PJC.Areas.User
         [HttpGet]
         public IActionResult Delete(string id)
         {
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
-            Sach s = context.GetSachByMa(id);
-            ViewData.Model = s;
-            return View();
+            //StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
+            //Sach s = context.GetSachByMa(id);
+            //ViewData.Model = s;
+            var data = _services.GetDataFromAPIById("https://localhost:44301/", "api/Saches", id);
+            ASS_QLTV_API.Models.Sach sach = JsonConvert.DeserializeObject<ASS_QLTV_API.Models.Sach>(data);
+            ViewData.Model = sach;
+            return View(sach);
         }
         [HttpPost]
-        public IActionResult Delete(Sach s)
+        public IActionResult Delete(ASS_QLTV_API.Models.Sach s)
         {
             int count;
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
-            count = context.DeleteSach(s);
+            //StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
+            //count = context.DeleteSach(s);
+            var data = _services.GetDataFromAPIById("https://localhost:44301/", "api/Saches", s.MaSach);
+            ASS_QLTV_API.Models.Sach sach = JsonConvert.DeserializeObject<ASS_QLTV_API.Models.Sach>(data);
+
+            if (sach != null)
+            {
+                var imagePath = Path.Combine(_hostEnvironment.WebRootPath + sach.ImageUrl);
+                if (System.IO.File.Exists(imagePath))
+                    System.IO.File.Delete(imagePath);
+            }
+
+            count = _services.DeleteData("https://localhost:44301/", "api/Saches", s.MaSach);
+
             if (count > 0)
             {
                 TempData["result"] = "Xóa sách  thành công";
@@ -126,9 +143,9 @@ namespace PJC.Areas.User
         [HttpGet]
         public IActionResult Detail(string id)
         {
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
-            Sach s = context.GetSachByMa(id);
-            ViewData.Model = s;
+            var data = _services.GetDataFromAPIById("https://localhost:44301/", "api/Saches", id);
+            ASS_QLTV_API.Models.Sach sach = JsonConvert.DeserializeObject<ASS_QLTV_API.Models.Sach>(data);
+            ViewData.Model = sach;
             return View();
         }
     }

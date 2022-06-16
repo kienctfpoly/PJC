@@ -86,7 +86,7 @@
                                         </td>
                                         <td>
                                             <form action="~/DocGia/Edit" method="get">
-                                                <input type="hidden" value="@item.MatSach" name="id" />
+                                                <input type="hidden" value="@item.MaDg" name="id" />
 
                                                 <input type="submit" value="Sửa" class="btn btn-outline-success" />
                                             </form>
@@ -100,7 +100,7 @@
                                             </form>
                                         </td>
                                         <td>
-                                            <form action="~/DocGia/Detail" method="get">
+                                            <form action="~/DocGia/Delete" method="get">
                                                 <input type="hidden" value="@item.MaDg" name="id" />
 
                                                 <input type="submit" value="Xóa" class="btn btn-outline-danger" />

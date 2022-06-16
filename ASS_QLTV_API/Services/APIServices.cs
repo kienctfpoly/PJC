@@ -27,6 +27,39 @@ namespace ASS_QLTV_API.Services
             }
         }
 
+        public string GetDataFromAPIById(string uri, string requestUri, string id)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(uri);
+            try
+            {
+                var jsonConnect = client.GetAsync(requestUri + "/" + id).Result;
+                string jsonData = jsonConnect.Content.ReadAsStringAsync().Result;
+                return jsonData;
+            }
+            catch (Exception e)
+            {
+                return string.Empty;
+            }
+        }
+
+        public int DeleteData(string uri, string requestUri, string id)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(uri);
+            try
+            {
+                var result = client.DeleteAsync(requestUri + "/" + id).Result;
+                if(result.IsSuccessStatusCode)
+                    return 1;
+                return 0;
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+        }
+
         public int PostUser(string uri, Taikhoan tk)
         {
             HttpClient client = new HttpClient();
@@ -95,7 +128,7 @@ namespace ASS_QLTV_API.Services
             }
         }
 
-        public int PostPhieuMuon(string uri, Ctpm ctpm)
+        public int PostCtPhieuMuon(string uri, Ctpm ctpm)
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(uri);
@@ -104,6 +137,91 @@ namespace ASS_QLTV_API.Services
                 var newPostJson = JsonConvert.SerializeObject(ctpm);
                 var payLoad = new StringContent(newPostJson, Encoding.UTF8, "application/json");
                 var result = client.PostAsync(uri, payLoad).Result.Content.ReadAsStringAsync().Result;
+                return 1;
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+        }
+
+        public int PutUser(string uri,Taikhoan tk)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(uri);
+            try
+            {
+                var newPutJson = JsonConvert.SerializeObject(tk);
+                var payLoad = new StringContent(newPutJson, Encoding.UTF8, "application/json");
+                var result = client.PutAsync(uri + "/" + tk.User, payLoad).Result.Content.ReadAsStringAsync().Result;
+                return 1;
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+        }
+
+        public int PutDG(string uri, Docgium dg)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(uri);
+            try
+            {
+                var newPutJson = JsonConvert.SerializeObject(dg);
+                var payLoad = new StringContent(newPutJson, Encoding.UTF8, "application/json");
+                var result = client.PutAsync(uri + "/" + dg.MaDg, payLoad).Result.Content.ReadAsStringAsync().Result;
+                return 1;
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+        }
+
+        public int PutSach(string uri, Sach sach)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(uri);
+            try
+            {
+                var newPutJson = JsonConvert.SerializeObject(sach);
+                var payLoad = new StringContent(newPutJson, Encoding.UTF8, "application/json");
+                var result = client.PutAsync(uri + "/" + sach.MaSach, payLoad).Result.Content.ReadAsStringAsync().Result;
+                return 1;
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+        }
+
+        public int PutPhieuMuon(string uri, Phieumuon pm)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(uri);
+            try
+            {
+                var newPutJson = JsonConvert.SerializeObject(pm);
+                var payLoad = new StringContent(newPutJson, Encoding.UTF8, "application/json");
+                var result = client.PutAsync(uri + "/" + pm.MaPm, payLoad).Result.Content.ReadAsStringAsync().Result;
+                return 1;
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+        }
+
+        public int PutCtPhieuMuon(string uri, Ctpm ct)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(uri);
+            try
+            {
+                var newPutJson = JsonConvert.SerializeObject(ct);
+                var payLoad = new StringContent(newPutJson, Encoding.UTF8, "application/json");
+                var result = client.PutAsync(uri + "/" + ct.MaCtpm, payLoad).Result.Content.ReadAsStringAsync().Result;
                 return 1;
             }
             catch (Exception e)
@@ -135,5 +253,19 @@ namespace ASS_QLTV_API.Services
             }
         }
 
+        public int ChangePass(string username, string newPass)
+        {
+            try
+            {
+                var data = GetDataFromAPIById("https://localhost:44301/", "api/Taikhoans", username);
+                Taikhoan tk = JsonConvert.DeserializeObject<Taikhoan>(data);
+                tk.Password = newPass;
+                return PutUser("https://localhost:44301/api/Taikhoans", tk);
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+        }
     }
 }

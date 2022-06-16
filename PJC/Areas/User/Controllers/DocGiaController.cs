@@ -59,17 +59,21 @@ namespace PJC.Areas.User.Controllers
       //  [Area("User")]
         public IActionResult Edit(string id)
         {
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
-            DocGia dg = context.GetDocGiaByMaDG(id);
+            //StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
+            //DocGia dg = context.GetDocGiaByMaDG(id);
+            //ViewData.Model = dg;
+            var data = _services.GetDataFromAPIById("https://localhost:44301/", "api/Docgiums", id);
+            Docgium dg = JsonConvert.DeserializeObject<Docgium>(data);
             ViewData.Model = dg;
             return View();
         }
         [HttpPost]
-        public IActionResult Edit(DocGia dg)
+        public IActionResult Edit(Docgium dg)
         {
             int count;
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
-            count = context.UpdateDocGia(dg);
+            //StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
+            //count = context.UpdateDocGia(dg);
+            count = _services.PutDG("https://localhost:44301/api/Docgiums", dg);
             if (count > 0)
             {
                 TempData["result"] = "Cập nhật thành công";
@@ -85,18 +89,22 @@ namespace PJC.Areas.User.Controllers
        // [Area("User")]
         public IActionResult Delete(string id)
         {
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
-            DocGia dg = context.GetDocGiaByMaDG(id);
+            //StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
+            //DocGia dg = context.GetDocGiaByMaDG(id);
+            //ViewData.Model = dg;
+            var data = _services.GetDataFromAPIById("https://localhost:44301/", "api/Docgiums", id);
+            Docgium dg = JsonConvert.DeserializeObject<Docgium>(data);
             ViewData.Model = dg;
             return View();
         }
         [HttpPost]
       //  [Area("User")]
-        public IActionResult Delete(DocGia dg)
+        public IActionResult Delete(Docgium dg)
         {
             int count;
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
-            count = context.DeleteDocGia(dg);
+            //StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
+            //count = context.DeleteDocGia(dg);
+            count = _services.DeleteData("https://localhost:44301/", "api/Docgiums", dg.MaDg);
             if (count > 0)
             {
                 TempData["result"] = "Xóa độc giả  thành công";
@@ -111,9 +119,12 @@ namespace PJC.Areas.User.Controllers
        // [Area("User")]
         public IActionResult Detail(string id)
         {
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
-            DocGia s = context.GetDocGiaByMaDG(id);
-            ViewData.Model = s;
+            //StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
+            //DocGia s = context.GetDocGiaByMaDG(id);
+            //ViewData.Model = s;
+            var data = _services.GetDataFromAPIById("https://localhost:44301/", "api/Docgiums", id);
+            Docgium dg = JsonConvert.DeserializeObject<Docgium>(data);
+            ViewData.Model = dg;
             return View();
         }
     }

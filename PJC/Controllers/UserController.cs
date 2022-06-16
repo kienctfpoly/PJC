@@ -69,17 +69,21 @@ namespace PJC.Controllers
         [HttpGet]
         public IActionResult Edit(string id)
         {
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
-            TaiKhoan tk = context.GetTaiKhoanByUser(id);
+            //StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
+            //TaiKhoan tk = context.GetTaiKhoanByUser(id);
+            var data = _services.GetDataFromAPIById("https://localhost:44301/", "api/Taikhoans", id);
+            Taikhoan tk = JsonConvert.DeserializeObject<Taikhoan>(data);
             ViewData.Model = tk;
             return View();
         }
         [HttpPost]
-        public IActionResult Edit(TaiKhoan tk)
+        public IActionResult Edit(Taikhoan tk)
         {
             int count;
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
-            count = context.UpdateUser(tk);
+            //StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
+            //count = context.UpdateUser(tk);
+            count = _services.PutUser("https://localhost:44301/api/Taikhoans", tk);
+
             if (count > 0)
             {
                 TempData["result"] = "Cập nhật thành công";
@@ -94,8 +98,10 @@ namespace PJC.Controllers
         [HttpGet]
         public IActionResult Delete(string id)
         {
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
-            TaiKhoan tk = context.GetTaiKhoanByUser(id);
+            //StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
+            //TaiKhoan tk = context.GetTaiKhoanByUser(id);
+            var data = _services.GetDataFromAPIById("https://localhost:44301/", "api/Taikhoans", id);
+            Taikhoan tk = JsonConvert.DeserializeObject<Taikhoan>(data);
             ViewData.Model = tk;
             return View();
         }
@@ -104,9 +110,10 @@ namespace PJC.Controllers
         {
 
             int count;
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
-            count = context.DeleteUser(tk);
-          
+            //StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
+            //count = context.DeleteUser(tk);
+            count = _services.DeleteData("https://localhost:44301/", "api/Taikhoans", tk.User);
+
             if (count > 0)
             {
                 TempData["result"] = "Xóa người dùng thành công";
