@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PJC.Models.CTPM>
+﻿@model IEnumerable<ASS_QLTV_API.Models.Ctpm>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -40,7 +40,7 @@ setTimeout(function () {
                             </div>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.MaPM)
+                                    @Html.DisplayNameFor(model => model.MaPm)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.MaSach)
@@ -72,7 +72,7 @@ setTimeout(function () {
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.MaPM)
+                                        @Html.DisplayFor(modelItem => item.MaPm)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.MaSach)
@@ -97,16 +97,14 @@ setTimeout(function () {
                                     </td>
                                     <td>
                                         <form action="~/PhieuTra/Edit" method="get">
-                                            <input type="hidden" value="@item.MaPM" name="id" />
-                                            <input type="hidden" value="@item.MaSach" name="masach" />
+                                            <input type="hidden" value="@item.MaCtpm" name="id" />
                                             <input type="submit" value="Sửa" class="btn btn-outline-success" />
                                         </form>
 
                                     </td>
                                     <td>
                                         <form action="~/PhieuTra/Detail" method="get">
-                                            <input type="hidden" value="@item.MaPM" name="id" />
-                                            <input type="hidden" value="@item.MaSach" name="masach" />
+                                            <input type="hidden" value="@item.MaCtpm" name="id" />
                                             <input type="submit" value="Chi tiết" class="btn btn-outline-warning" />
                                         </form>
                                     </td>

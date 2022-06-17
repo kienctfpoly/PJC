@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PJC.Models.CTPM>
+﻿@model IEnumerable<ASS_QLTV_API.Models.Ctpm>
 
 @{
     ViewData["Title"] = "CTPM";
@@ -14,7 +14,7 @@
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.MaPM)
+                            @Html.DisplayNameFor(model => model.MaPm)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.MaSach)
@@ -45,7 +45,7 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.MaPM)
+                                @Html.DisplayFor(modelItem => item.MaPm)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.MaSach)

@@ -73,7 +73,7 @@
                                         @Html.DisplayFor(modelItem => item.Password)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.PhanQuyen)
+                                        @(item.PhanQuyen == 1? "Admin" : "Thủ thư") 
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.TenNd)

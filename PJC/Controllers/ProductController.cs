@@ -50,6 +50,7 @@ namespace PJC.Controllers
             int count;
             //StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
             //count = context.CreateSach(sach);
+
             var wwwrootPath = _hostEnvironment.WebRootPath;
             var fileName = Path.GetFileNameWithoutExtension(sach.ImageFile.FileName);
             var extension = Path.GetExtension(sach.ImageFile.FileName);
@@ -90,24 +91,33 @@ namespace PJC.Controllers
             //StoreContext context = HttpContext.RequestServices.GetService(typeof(PJC.Models.StoreContext)) as StoreContext;
             //count = context.UpdateProduct(s);
             //delete image from wwwroot
-            if (sach.ImageUrl != null)
+            if (sach.ImageFile == null)
             {
-                var imagePath = Path.Combine(_hostEnvironment.WebRootPath + sach.ImageUrl);
-                if (System.IO.File.Exists(imagePath))
-                    System.IO.File.Delete(imagePath);
+                Sach s = JsonConvert.DeserializeObject<Sach>(
+                    _services.GetDataFromAPIById("https://localhost:44301/", "api/Saches", sach.MaSach));
+                sach.ImageUrl = s.ImageUrl;
             }
-
-            var wwwrootPath = _hostEnvironment.WebRootPath;
-            var fileName = Path.GetFileNameWithoutExtension(sach.ImageFile.FileName);
-            var extension = Path.GetExtension(sach.ImageFile.FileName);
-            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-            var path = Path.Combine(wwwrootPath + "\\img\\sach\\", fileName);
-            using (var fileStream = new FileStream(path, FileMode.Create))
+            else
             {
-                sach.ImageFile.CopyTo(fileStream);
-            }
+                if (sach.ImageUrl != null)
+                {
+                    var imagePath = Path.Combine(_hostEnvironment.WebRootPath + sach.ImageUrl);
+                    if (System.IO.File.Exists(imagePath))
+                        System.IO.File.Delete(imagePath);
+                }
 
-            sach.ImageUrl = "/img/sach/" + fileName;
+                var wwwrootPath = _hostEnvironment.WebRootPath;
+                var fileName = Path.GetFileNameWithoutExtension(sach.ImageFile.FileName);
+                var extension = Path.GetExtension(sach.ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                var path = Path.Combine(wwwrootPath + "\\img\\sach\\", fileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    sach.ImageFile.CopyTo(fileStream);
+                }
+
+                sach.ImageUrl = "/img/sach/" + fileName;
+            }
 
 
             count = _services.PutSach("https://localhost:44301/api/Saches", sach);

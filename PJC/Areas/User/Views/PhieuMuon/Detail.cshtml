@@ -1,4 +1,4 @@
-﻿@model PJC.Models.PhieuMuon
+﻿@model ASS_QLTV_API.Models.Phieumuon
 
 @{
     ViewData["Title"] = "Detail";
@@ -19,16 +19,16 @@
             <hr />
             <dl class="row">
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.MaPM)
+                    @Html.DisplayNameFor(model => model.MaPm)
                 </dt>
                 <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.MaPM)
+                    @Html.DisplayFor(model => model.MaPm)
                 </dd>
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.MaDG)
+                    @Html.DisplayNameFor(model => model.MaDg)
                 </dt>
                 <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.MaDG)
+                    @Html.DisplayFor(model => model.MaDg)
                 </dd>
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.NgayMuon)
@@ -56,8 +56,7 @@
                 </dd>
             </dl>
             <div>
-
-                <a href="/User/PhieuMuon/Edit/ @Model.MaPM">Sửa</a>
+                <a class="btn btn-info" href="/User/PhieuMuon/Edit/ @Model.MaPm">Sửa</a>
             </div>
         </div>
     </div>

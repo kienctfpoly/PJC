@@ -1,4 +1,4 @@
-﻿@model PJC.Models.CTPM
+﻿@model ASS_QLTV_API.Models.Ctpm
 
 @{
     ViewData["Title"] = "Delete";
@@ -20,10 +20,10 @@
             <hr />
             <dl class="row">
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.MaPM)
+                    @Html.DisplayNameFor(model => model.MaPm)
                 </dt>
                 <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.MaPM)
+                    @Html.DisplayFor(model => model.MaPm)
                 </dd>
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.MaSach)
@@ -63,7 +63,7 @@
                 </dd>
             </dl>
             <form asp-action="Delete">
-                <input asp-for="MaPM" type="hidden" />
+                <input asp-for="MaCtpm" type="hidden" />
                 <input type="submit" value="Xóa" class="btn btn-danger" />
             </form>
             
@@ -71,8 +71,6 @@
 
     </div>
 </div>
-        </div>
-    </div><h1>Delete</h1>
 
 
 

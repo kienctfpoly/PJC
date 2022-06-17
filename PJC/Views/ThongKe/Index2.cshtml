@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PJC.Models.DocGia>
+﻿@model IEnumerable<ASS_QLTV_API.Models.Docgium>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -77,13 +77,13 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.MaDG)
+                                    @Html.DisplayNameFor(model => model.MaDg)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.TenDG)
+                                    @Html.DisplayNameFor(model => model.TenDg)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.SDT)
+                                    @Html.DisplayNameFor(model => model.Sdt)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.DiaChi)
@@ -101,13 +101,13 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.MaDG)
+                                        @Html.DisplayFor(modelItem => item.MaDg)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.TenDG)
+                                        @Html.DisplayFor(modelItem => item.TenDg)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.SDT)
+                                        @Html.DisplayFor(modelItem => item.Sdt)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.DiaChi)

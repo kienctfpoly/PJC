@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PJC.Models.CTPM>
+﻿@model IEnumerable<ASS_QLTV_API.Models.Ctpm>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
@@ -19,7 +19,7 @@ setTimeout(function () {
         <div class="card-header">
             <div class="row">
                 <div class="col-md-6 col-xs-12">
-                    <a class="btn btn-success" href="/User/PhieuTra/Create">Tạo mới</a>
+                    <a class="btn btn-success" href="/User/PhieuTra/TraSach">Trả sách</a>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@ setTimeout(function () {
                             <thead>
                                 <tr>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.MaPM)
+                                        @Html.DisplayNameFor(model => model.MaPm)
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.MaSach)
@@ -69,7 +69,7 @@ setTimeout(function () {
                                 {
                                     <tr>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.MaPM)
+                                            @Html.DisplayFor(modelItem => item.MaPm)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.MaSach)
@@ -91,16 +91,14 @@ setTimeout(function () {
                                         </td>
                                         <td>
                                             <form action="~/User/PhieuTra/Edit" method="get">
-                                                <input type="hidden" value="@item.MaPM" name="id" />
-                                                <input type="hidden" value="@item.MaSach" name="mas" />
+                                                <input type="hidden" value="@item.MaCtpm" name="id" />
                                                 <input type="submit" value="Sửa" class="btn btn-outline-success" />
                                             </form>
 
                                         </td>
                                         <td>
                                             <form action="~/User/PhieuTra/Detail" method="get">
-                                                <input type="hidden" value="@item.MaPM" name="id" />
-                                                <input type="hidden" value="@item.MaSach" name="mas" />
+                                                <input type="hidden" value="@item.MaCtpm" name="id" />
                                                 <input type="submit" value="Chi tiết" class="btn btn-outline-warning" />
                                             </form>
                                         </td>

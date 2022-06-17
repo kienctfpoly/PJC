@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PJC.Models.PhieuMuon>
+﻿@model IEnumerable<ASS_QLTV_API.Models.Phieumuon>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -77,10 +77,10 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.MaPM)
+                                    @Html.DisplayNameFor(model => model.MaPm)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.MaDG)
+                                    @Html.DisplayNameFor(model => model.MaDg)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.NgayMuon)
@@ -102,10 +102,10 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.MaPM)
+                                        @Html.DisplayFor(modelItem => item.MaPm)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.MaDG)
+                                        @Html.DisplayFor(modelItem => item.MaDg)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.NgayMuon)

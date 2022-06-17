@@ -1,4 +1,4 @@
-﻿@model PJC.Models.PhieuMuon
+﻿@model ASS_QLTV_API.Models.Phieumuon
 
 @{
     ViewData["Title"] = "Detail";
@@ -22,16 +22,16 @@
             <hr />
             <dl id="data" class="row">
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.MaPM)
+                    @Html.DisplayNameFor(model => model.MaPm)
                 </dt>
                 <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.MaPM)
+                    @Html.DisplayFor(model => model.MaPm)
                 </dd>
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.MaDG)
+                    @Html.DisplayNameFor(model => model.MaDg)
                 </dt>
                 <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.MaDG)
+                    @Html.DisplayFor(model => model.MaDg)
                 </dd>
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.NgayMuon)
@@ -58,7 +58,7 @@
                     @Html.DisplayFor(model => model.User)
                 </dd>
             </dl>
-            <button class="btn-outline-success" onclick="myfunction()">Lưu</button>
+            <button type="button" class="btn btn-success" onclick="myfunction()">Lưu</button>
             <script>
                 function myfunction() {
 

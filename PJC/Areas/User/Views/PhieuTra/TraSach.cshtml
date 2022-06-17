@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PJC.Models.PhieuMuonInCTPM>
+﻿@model IEnumerable<ASS_QLTV_API.Models.Ctpm>
 
 @{
     ViewData["Title"] = "TraSach";
@@ -32,16 +32,10 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.MaPM)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.MaDG)
+                                    @Html.DisplayNameFor(model => model.MaPm)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.MaSach)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.NgayHenTra)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.NgayTra)
@@ -70,16 +64,10 @@
                             {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.MaPM)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.MaDG)
+                                    @Html.DisplayFor(modelItem => item.MaPm)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.MaSach)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NgayHenTra)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.NgayTra)
@@ -101,15 +89,13 @@
                                 </td>
                                 <td>
                                     <form action="~/User/PhieuTra/EditTraSach" method="get">
-                                        <input type="hidden" value="@item.MaPM" name="id" />
-                                        <input type="hidden" value="@item.MaSach" name="mas" />
+                                        <input type="hidden" value="@item.MaCtpm" name="id" />
                                         <input type="submit" value="Trả sách" class="btn btn-outline-success" />
                                     </form>
                                 </td>
                                 <td>
                                     <form action="~/User/PhieuTra/Edit" method="get">
-                                        <input type="hidden" value="@item.MaPM" name="id" />
-                                        <input type="hidden" value="@item.MaSach" name="mas" />
+                                        <input type="hidden" value="@item.MaCtpm" name="id" />
                                         <input type="submit" value="Sửa" class="btn btn-outline-warning" />
                                     </form>
                                 </td>

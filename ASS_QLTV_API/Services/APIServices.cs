@@ -68,8 +68,13 @@ namespace ASS_QLTV_API.Services
             {
                 var newPostJson = JsonConvert.SerializeObject(tk);
                 var payLoad = new StringContent(newPostJson, Encoding.UTF8, "application/json");
-                var result = client.PostAsync(uri, payLoad).Result.Content.ReadAsStringAsync().Result;
-                return 1;
+                var result = client.PostAsync(uri, payLoad).Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var data = result.Content.ReadAsStringAsync().Result;
+                    return 1;
+                }
+                return 0;
             }
             catch (Exception e)
             {
@@ -85,8 +90,13 @@ namespace ASS_QLTV_API.Services
             {
                 var newPostJson = JsonConvert.SerializeObject(docgium);
                 var payLoad = new StringContent(newPostJson, Encoding.UTF8, "application/json");
-                var result = client.PostAsync(uri, payLoad).Result.Content.ReadAsStringAsync().Result;
-                return 1;
+                var result = client.PostAsync(uri, payLoad).Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var data = result.Content.ReadAsStringAsync().Result;
+                    return 1;
+                }
+                return 0;
             }
             catch (Exception e)
             {
@@ -102,8 +112,13 @@ namespace ASS_QLTV_API.Services
             {
                 var newPostJson = JsonConvert.SerializeObject(sach);
                 var payLoad = new StringContent(newPostJson, Encoding.UTF8, "application/json");
-                var result = client.PostAsync(uri, payLoad).Result.Content.ReadAsStringAsync().Result;
-                return 1;
+                var result = client.PostAsync(uri, payLoad).Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var data = result.Content.ReadAsStringAsync().Result;
+                    return 1;
+                }
+                return 0;
             }
             catch (Exception e)
             {
@@ -117,10 +132,19 @@ namespace ASS_QLTV_API.Services
             client.BaseAddress = new Uri(uri);
             try
             {
+                var data = GetDataFromAPIById("https://localhost:44301/", "api/Docgiums", phieumuon.MaDg);
+                Docgium dg = JsonConvert.DeserializeObject<Docgium>(data);
+                if (dg.MatSach >= 3)
+                    return 100;
                 var newPostJson = JsonConvert.SerializeObject(phieumuon);
                 var payLoad = new StringContent(newPostJson, Encoding.UTF8, "application/json");
-                var result = client.PostAsync(uri, payLoad).Result.Content.ReadAsStringAsync().Result;
-                return 1;
+                var result = client.PostAsync(uri, payLoad).Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var d = result.Content.ReadAsStringAsync().Result;
+                    return 1;
+                }
+                return 0;
             }
             catch (Exception e)
             {
@@ -134,10 +158,22 @@ namespace ASS_QLTV_API.Services
             client.BaseAddress = new Uri(uri);
             try
             {
+                var d = GetDataFromAPI("https://localhost:44301/", "api/Ctpms");
+                List<Ctpm> ct = JsonConvert.DeserializeObject<List<Ctpm>>(d);
+                if (ct.Any(c => c.MaPm == ctpm.MaPm && c.MaSach == ctpm.MaSach))
+                {
+                    return 100;
+                }
+
                 var newPostJson = JsonConvert.SerializeObject(ctpm);
                 var payLoad = new StringContent(newPostJson, Encoding.UTF8, "application/json");
-                var result = client.PostAsync(uri, payLoad).Result.Content.ReadAsStringAsync().Result;
-                return 1;
+                var result = client.PostAsync(uri, payLoad).Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var data = result.Content.ReadAsStringAsync().Result;
+                    return 1;
+                }
+                return 0;
             }
             catch (Exception e)
             {

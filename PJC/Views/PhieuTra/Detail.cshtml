@@ -1,4 +1,4 @@
-﻿@model PJC.Models.CTPM
+﻿@model ASS_QLTV_API.Models.Ctpm
 
 @{
     ViewData["Title"] = "Detail";
@@ -20,10 +20,10 @@
             <hr />
             <dl class="row">
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.MaPM)
+                    @Html.DisplayNameFor(model => model.MaPm)
                 </dt>
                 <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.MaPM)
+                    @Html.DisplayFor(model => model.MaPm)
                 </dd>
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.MaSach)
@@ -62,10 +62,6 @@
                     @Html.DisplayFor(model => model.GhiChu)
                 </dd>
             </dl>
-            <div>
-                @Html.ActionLink("Edit", "Edit", new { id=Model.MaPM,Model.MaSach }) |
-               
-            </div>
 
         </div>
 
